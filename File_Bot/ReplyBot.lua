@@ -1,7 +1,7 @@
 local function Reply(msg)
 local text = msg.content_.text_
 if not Redis:get(Dragon..'SOFI:Lock:Reply'..msg.chat_id) then
-if text == "انجب" or text == "نجب" or text == "انجبي" or text == "نجبي" or text == "انجبو" or text == "نجبو" then
+if text == "انج" or text == "نجب" or text == "انجبي" or text == "نجبي" or text == "انجبو" or text == "نجبو" then
 if msg.SecondSudo then
 rd = 'مطوريي اغلط شكد متريد نورتنه ، ♥️💪🏿'
 elseif msg.SudoBot then
