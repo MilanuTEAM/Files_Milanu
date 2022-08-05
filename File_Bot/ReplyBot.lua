@@ -1,7 +1,7 @@
 local function Reply(msg)
 local text = msg.content_.text_
 if not Redis:get(Dragon..'SOFI:Lock:Reply'..msg.chat_id) then
-if text == "انج" or text == "نجب" or text == "انجبي" or text == "نجبي" or text == "انجبو" or text == "نجبو" then
+if text == "انجب" or text == "نجب" or text == "انجبي" or text == "نجبي" or text == "انجبو" or text == "نجبو" then
 if msg.SecondSudo then
 rd = 'مطوريي اغلط شكد متريد نورتنه ، ♥️💪🏿'
 elseif msg.SudoBot then
@@ -154,6 +154,24 @@ if text == 'وينك' or text == 'وينج' then
 Dragon =  "مْوٌجہوٌدِ يہمْگُ يحلوُ  😉♥️" 
 LuaTele.sendText(msg.chat_id,msg.id,Dragon, "md",true)  
 return false
+end
+
+if msg.Manager then
+if text == 'تفعيل ردود البوت' or text == 'تفعيل الردود' then
+if not Redis:get(Dragon..'SOFI:Lock:Reply'..msg.chat_id) then
+LuaTele.sendText(msg.chat_id,msg.id,'⌯︙ردود البوت بالتاكيد مفعله ', "md",true)  
+else
+LuaTele.sendText(msg.chat_id,msg.id,'⌯︙تم تفعيل ردود البوت', "md",true)  
+Redis:del(Dragon..'SOFI:Lock:Reply'..msg.chat_id)
+end end
+if text == 'تعطيل ردود البوت' or text == 'تعطيل الردود' then
+if Redis:get(Dragon..'SOFI:Lock:Reply'..msg.chat_id) then
+LuaTele.sendText(msg.chat_id,msg.id,'⌯︙ردود البوت بالتاكيد معطله ', "md",true)  
+else
+Redis:set(Dragon..'SOFI:Lock:Reply'..msg.chat_id,true)
+LuaTele.sendText(msg.chat_id,msg.id,'⌯︙تم تعطيل ردود البوت', "md",true)  
+end end
+end
 end
 return {
 Dragon = Reply
